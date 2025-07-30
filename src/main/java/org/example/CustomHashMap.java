@@ -20,7 +20,7 @@ public class CustomHashMap<K, V> {
             throw new IllegalArgumentException("Задан некорректный размер:" + initialCapacity);
         }
 
-        this.buckets = (Node<E>[]) new Node[initialCapacity];
+        this.buckets = (Node<K, V>[]) new Node[initialCapacity];
         this.size = 0;
     }
 
