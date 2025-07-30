@@ -8,7 +8,7 @@ public class CustomHashMap<K, V> {
     private static final int DEFAULT_CAPACITY = 16;
     private static final double LOAD_FACTOR = 0.75;
 
-    private Node<E>[] buckets;
+    private Node<K, V>[] buckets;
     private int size;
 
     CustomHashMap() {
