@@ -75,7 +75,7 @@ public class CustomHashMap<K, V> {
         Node<K, V> current = buckets[index];
 
         while (current!=null){
-            if(current.hash==hash&&current.key.equals(key)){
+            if(current.hash==hash&&(current.key == key || current.key.equals(key))){
                 return current.value;
             }
             current=current.next;
