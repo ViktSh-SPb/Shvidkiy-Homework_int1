@@ -65,6 +65,24 @@ public class CustomHashMap<K, V> {
         return null;
     }
 
+    public V get(K key){
+        if (key==null){
+            throw new IllegalArgumentException("Ключ не может быть null");
+        }
+
+        int hash = hash(key);
+        int index = getIndex(key);
+        Node<K, V> current = buckets[index];
+
+        while (current!=null){
+            if(current.hash==hash&&current.key.equals(key)){
+                return current.value;
+            }
+            current=current.next;
+        }
+        return null;
+    }
+
     public boolean remove(E element) {
         if (element == null) {
             throw new IllegalArgumentException("Данная коллекция не поддерживает элементы null");
