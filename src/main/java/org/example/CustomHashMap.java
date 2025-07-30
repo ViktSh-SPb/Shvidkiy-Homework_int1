@@ -83,30 +83,30 @@ public class CustomHashMap<K, V> {
         return null;
     }
 
-    public boolean remove(E element) {
-        if (element == null) {
-            throw new IllegalArgumentException("Данная коллекция не поддерживает элементы null");
+    public V remove(K key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Ключ не может быть null");
         }
 
-        int hash = hash(element);
-        int index = getIndex(element);
-        Node<E> current = buckets[index];
-        Node<E> prev = null;
+        int hash = hash(key);
+        int index = getIndex(key);
+        Node<K, V> current = buckets[index];
+        Node<K, V> prev = null;
 
         while (current != null) {
-            if (current.hash == hash && (current.value == element || current.value.equals(element))) {
+            if (current.hash == hash && (current.key == key || current.key.equals(key))) {
                 if (prev == null) {
                     buckets[index] = current.next;
                 } else {
                     prev.next = current.next;
                 }
                 size--;
-                return true;
+                return current.value;
             }
             prev = current;
             current = current.next;
         }
-        return false;
+        return null;
     }
 
     private int getIndex(K key) {
