@@ -89,8 +89,8 @@ public class CustomHashMap<K, V> {
         return false;
     }
 
-    private int getIndex(E element) {
-        return hash(element) & (buckets.length - 1);
+    private int getIndex(K key) {
+        return hash(key) & (buckets.length - 1);
     }
 
     private void resize() {
