@@ -114,13 +114,13 @@ public class CustomHashMap<K, V> {
     }
 
     private void resize() {
-        Node<E>[] oldBuckets = buckets;
-        Node<E>[] newBuckets = (Node<E>[]) new Node[oldBuckets.length * 2];
+        Node<K, V>[] oldBuckets = buckets;
+        Node<K, V>[] newBuckets = (Node<K, V>[]) new Node[oldBuckets.length * 2];
 
-        for (Node<E> head : oldBuckets) {
-            Node<E> current = head;
+        for (Node<K, V> head : oldBuckets) {
+            Node<K, V> current = head;
             while (current != null) {
-                Node<E> next = current.next;
+                Node<K, V> next = current.next;
                 int newIndex = current.hash & (newBuckets.length - 1);
                 current.next = newBuckets[newIndex];
                 newBuckets[newIndex] = current;
