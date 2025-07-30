@@ -4,7 +4,7 @@ package org.example;
 /**
  * @author Viktor Shvidkiy
  */
-public class CustomHashMap<E> {
+public class CustomHashMap<K, V> {
     private static final int DEFAULT_CAPACITY = 16;
     private static final double LOAD_FACTOR = 0.75;
 
