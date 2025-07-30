@@ -30,7 +30,7 @@ public class CustomHashMap<K, V> {
         V value;
         Node<K, V> next;
 
-        Node(int hash,K key, V value, Node<K, V> next) {
+        Node(int hash, K key, V value, Node<K, V> next) {
             this.hash = hash;
             this.key = key;
             this.value = value;
@@ -38,29 +38,31 @@ public class CustomHashMap<K, V> {
         }
     }
 
-    public boolean add(E element) {
-        if (element == null) {
-            throw new IllegalArgumentException("Данная коллекция не поддерживает элементы null");
+    public V put(K key, V value) {
+        if (key == null) {
+            throw new IllegalArgumentException("Ключ не может быть null");
         }
 
-        int hash = hash(element);
+        int hash = hash(key);
 
         if (size >= buckets.length * LOAD_FACTOR) {
             resize();
         }
 
-        int index = getIndex(element);
-        Node<E> current = buckets[index];
+        int index = getIndex(key);
+        Node<K, V> current = buckets[index];
 
         while (current != null) {
-            if (current.hash == hash && (current.value == element || current.value.equals(element))) {
-                return false;
+            if (current.hash == hash && (current.key == key || current.key.equals(key))) {
+                V oldValue = current.value;
+                current.value = value;
+                return oldValue;
             }
             current = current.next;
         }
-        buckets[index] = new Node<>(hash, element, buckets[index]);
+        buckets[index] = new Node<>(hash, key, value, buckets[index]);
         size++;
-        return true;
+        return null;
     }
 
     public boolean remove(E element) {
@@ -83,8 +85,8 @@ public class CustomHashMap<K, V> {
                 size--;
                 return true;
             }
-            prev=current;
-            current=current.next;
+            prev = current;
+            current = current.next;
         }
         return false;
     }
