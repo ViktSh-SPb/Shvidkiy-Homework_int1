@@ -141,17 +141,17 @@ public class CustomHashMap<K, V> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("CustomHashSet");
+        sb.append("CustomHashMap");
 
         boolean firstElement = true;
 
-        for (Node<E> head : buckets) {
-            Node<E> current = head;
+        for (Node<K, V> head : buckets) {
+            Node<K, V> current = head;
             while (current != null) {
                 if (!firstElement) {
                     sb.append(", ");
                 }
-                sb.append("\n\t").append(current.value);
+                sb.append("\n\t").append(current.key).append("=").append(current.value);
                 firstElement = false;
                 current = current.next;
             }
