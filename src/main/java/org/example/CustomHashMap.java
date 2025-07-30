@@ -110,11 +110,11 @@ public class CustomHashMap<K, V> {
         buckets = newBuckets;
     }
 
-    private int hash(Object element) {
-        if (element == null) {
+    private int hash(Object key) {
+        if (key == null) {
             return 0;
         }
-        int h = element.hashCode();
+        int h = key.hashCode();
         return h ^ (h >>> 16);
     }
 
